@@ -1,0 +1,129 @@
+################################################################################
+#				STEP 1
+#PROJECT NAME, VERSION, AND DATE INFORMATION.
+#	Be careful! Do NOT accidentally insert some spaces!
+# ${RELEASE_NAME} is the name of the tarball generated when one enters
+# 	$ make dist
+QUIET		:=@
+PROJECT_NAME	:=salon
+VERSION		:=v0.01
+DATE_TIME	:=$(shell date "+%Y-%m-%d")
+OS		:=$(shell uname -s)
+ARCH		:=$(shell uname -m)
+PLATFORM	:=${OS}-${ARCH}
+RELEASE_NAME	:=${PROJECT_NAME}-${PLATFORM}-${VERSION}-${DATE_TIME}
+AUTHOR_NAME	:=Zhongming Qu
+AUTHOR_EMAIL	:=qzmfrank@umich.edu
+###############################################################################
+#				STEP 2
+#PROJECT STRUCTURAL DIRECTORIES
+#	This part follows the usual convention of GNU projects. Modify it only
+#  when one has very strong reasons.
+#  	Note that the building is completely out-of-source.
+SRC		:=src
+INCLUDE		:=include
+EXAMPLE		:=example# Data files for various tests
+BUILD		:=build# Out-of-source build
+OBJ		:=${BUILD}/obj
+BIN		:=${BUILD}/bin
+ASM		:=${BUILD}/ASM# Assembly codes
+DEBUG		:=${BUILD}/DEBUG# Debugging output
+OUTPUT		:=${BUILD}/OUTPUT# Output 
+STRUCTURAL_DIRS	:=${BUILD} ${OBJ} ${BIN} ${ASM} ${DEBUG} ${OUTPUT}
+###############################################################################
+#				STEP 3
+#PROJECT-WIDE COMMON COMPILATION OPTIONS
+CC		:=icpc
+CXX		:=icpc
+# Compiling options for .c files:
+CFLAGS 		:=-O3							\
+		-Wall							\
+		-prec-div -no-ftz					\
+		-MMD -MP						\
+		-restrict						\
+		-openmp							\
+		-Wno-deprecated
+
+		# 							\
+		-DNDEBUG						\
+		-fPIC							\
+		-fno-inline-functions					\
+		-unroll-aggressive					\
+		-fno-math-errno						\
+		-nostdinc -nostdinc++					\
+		-DDEBUG							\
+		-opt-report-phase ipo_inl				\
+		-vec-report=1						\
+
+CXXFLAGS	:=${CFLAGS}# Compilig options for .cpp files.
+ASMFLAGS	:=-S -fsource-asm# Source code commeNted assembly code.
+###############################################################################
+#				STEP 4
+#PROJECT-WIDE INCLUDE AND LINKAGE OPTIONS
+ifeq (${PLATFORM},Linux-x86_64)
+	#	FFTW3 Library for Linux
+	#FFTW_INCS	:=-I/opt/intel/mkl/include/fftw
+	#FFTW_LIBS	:=-lfftw3
+	FFTW_DIR	:=/opt/fftw/3.3.3
+	FFTW_INCS	:=-I${FFTW_DIR}/include
+	FFTW_LIBS	:=-L${FFTW_DIR}/lib -lfftw3 -lfftw3_omp
+	#	Intel Math Kernel Library for Linux
+	MKL_INCS	:=
+	MKL_LIBS	:=-mkl
+	#	OpenMP Flags
+	OMP_INCS	:=
+	OMP_LIBS	:=-openmp
+	#	OpenMPI Library
+	MPI_INCS	:=`mpicxx -showme:compile`
+	MPI_LIBS	:=`mpicxx -showme:link`
+	#	Install Directory of Mathematica
+	#MATH_DIR	:=/opt/Wolfram/Mathematica/9.0
+	#	MathLink for Linux
+	#ML_DIR		:=${MATH_DIR}/SystemFiles/Links/MathLink/DeveloperKit/Linux-x86-86/CompilerAdditions
+	#ML_INCS		:=-I${ML_DIR}
+	#ML_LIBS		:=-L${ML_DIR} -lML64i3
+	#MPREP		:=${ML_DIR}/mprep
+	#MCC		:=${ML_DIR}/mcc
+	###	LibraryLink for MacOSX-x86-64
+	#MLL_INCS	:=-I${MATH_DIR}/SystemFiles/IncludeFiles/C
+	#MLL_LIBS	:=-L${MATH_DIR}/SystemFiles/Libraries/Linux-x86-64 -lWolframRTL
+endif
+ifeq (${PLATFORM},Darwin-x86_64)
+	#	FFTW3 Library for MacOSX-x86-64
+	FFTW_DIR	:=/opt/fftw/3.3.3
+	FFTW_INCS	:=-I${FFTW_DIR}/include
+	FFTW_LIBS	:=-L${FFTW_DIR}/lib -lfftw3 -lfftw3_omp
+	#	Intel Math Kernel Library for MacOSX-x86-64
+	#MKL_INCS	:=-iquote /opt/intel/include
+	MKL_LIBS	:=-mkl
+	#	OpenMP Flags
+	OMP_INCS	:=
+	OMP_LIBS	:=-openmp
+	#	OpenMPI Library
+	MPI_INCS	:=`mpicxx -showme:compile`
+	MPI_LIBS	:=`mpicxx -showme:link`
+	#	MathLink for MacOSX-x86-64
+	ML_DIR		:=/Applications/Mathematica.app/SystemFiles/Links/MathLink/DeveloperKit/MacOSX-x86-64/CompilerAdditions/
+	ML_INCS		:=-I${ML_DIR}
+	ML_LIBS		:=-L${ML_DIR} -lMLi3 -lstdc++ -framework Foundation
+	#MPREP		:=${ML_DIR}/mprep
+	#	LibraryLink for MacOSX-x86-64
+	#MLL_INCS	:=-I/Applications/Mathematica.app/SystemFiles/IncludeFiles/C/
+	#MLL_LIBS	:=-L/Applications/Mathematica.app/SystemFiles/Libraries/MacOSX-x86-64/
+endif
+#PROJECT-WIDE DEFAULT LINKING LIBRARIES AND INCLUDE DIRECTORIES
+INCS		:=${FFTW_INCS} ${MKL_INCS} ${OMP_INCS} ${MPI_LIBS} -iquote ${INCLUDE}
+LIBS		:=${FFTW_LIBS} ${MKL_LIBS} ${OMP_LIBS} ${MPI_LIBS} 
+##	LONESTAR COMPILING OPTIONS
+#CFLAGS 	:= -O3 -prec-div -no-ftz -restrict -Wshadow -MMD -MP
+
+#MPIINC 	:= `mpiCC -showme:compile`
+#FFTWINC := -I $$FFTW_INC
+#MKLINC 	:= -I $$MKL_INC
+
+#MKLLIBS := -L$$MKL_LINK -lmkl_intel_lp64 -lmkl_sequential -lmkl_core 	\
+	#-lpthread
+#MKLTHRD := -L$$MKL_LINK -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core 	\
+	#-lpthread -lm
+#FFTWLIB :=  -L $$FFTW_LINK -lfftw3
+#MPILIBS := `mpiCC -showme:link`

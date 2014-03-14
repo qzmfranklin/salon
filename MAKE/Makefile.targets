@@ -1,0 +1,95 @@
+# 			DISTRIBUTION FILES
+DISTFILES:=${SRCFILES} ${HDRFILES} ${DOCFILES} ${MANFILES} \
+	${EXPFILES} ${MKVFILES} ${MAKFILES}
+###############################################################################
+#			TOP LEVEL PHONY TARGETS
+.PHONY: all 							\
+	test							\
+	asm							\
+	list							\
+	clean cleanx cleanxx 					\
+	dist distclean						\
+	todolist						\
+	dir rmdir						\
+	check							\
+	help
+
+all:	${TARGET_ALL}
+test:	${TARGET_TEST} 
+asm:	${TARGET_ASM} 
+check:	${TARGET_CHECK}
+list:	${TARGET_LIST} 
+
+clean:
+	rm -f ${OBJ}/*.o ${OBJ}/*.d
+cleanx:
+	rm -f ${ASM}/*.s ${ASM}/*.d
+	rm -f ${DEBUG}/*.txt
+cleanxx: clean
+	rm -f ${BIN}/*.exe
+	@#rm -f ${LIB}/*.a ${LIB}/*.so
+dist:
+	@echo Compressing into "${B_CYAN}${RELEASE_NAME}.tgz${NONE}"...
+	${QUIET}rm -f ${RELEASE_NAME}.tgz; tar czf ${RELEASE_NAME}.tgz ${DISTFILES}
+todolist:
+	@for file in ${HDRFILES} ${SRCFILES} 			\
+		${DOCFILES} ${MANFILES} ${EXPFILES};		\
+		do grep -F -H -e TODO -e FIXME $$file;		\
+	done; true
+dir: 
+	@echo Creating structural directories:
+	@$(foreach dir,${STRUCTURAL_DIRS},if [ ! -d ${dir} ]; 	\
+		then echo Creating "${GREEN}${dir}/${NONE}"...; \
+		mkdir ${dir}; else echo Already exists:		\
+		"${GREY}${dir}${NONE}"; fi;)
+rmdir: 
+	@echo "${B_RED}WARNING: Deleting ${STRUCTURAL_DIRS}${NONE}"
+	${QUIET}rm -rf ${STRUCTURAL_DIRS}
+help:
+	@echo
+	@echo "Welcome! Here is a brief guide to using this Makefile by"
+	@echo "\t${AUTHOR_NAME} <${AUTHOR_EMAIL}>"
+	@echo "\t\t${B_RED}TOP LEVEL PHONY TARGETS${NONE}"
+	@echo "${GREEN}all${NONE}\t\t"\
+		"Generate ${BUILD}/*.o and ${BIN}/*.exe."
+	@echo "${GREEN}asm${NONE}\t\t"\
+		"Generate ${ASM}/*.s."
+	@echo "${GREEN}check${NONE}\t\t"\
+		"Run all the test binaries, i.e., ${BIN}/test_*.exe."
+	@echo "${GREEN}clean[x,xx]${NONE}\t"\
+		"Different levels of cleaning."
+	@echo "${GREEN}[rm]dir${NONE}\t"\
+		"[Delete]Create structural directories."
+	@echo "${GREEN}dist${NONE}\t\t"\
+		"Make a tar ball of source files."
+	@echo "${GREEN}help${NONE}\t\t"\
+		"Print the above help message."
+	@echo "${GREEN}list${NONE}\t\t"\
+		"List files associated with each directory."
+	@echo "${GREEN}test${NONE}\t\t"\
+		"Generate ${BUILD}/*.exe."
+	@echo "${GREEN}todolist${NONE}\t"\
+		"List files with TODO and/or FIXME."
+	@echo
+	@echo
+	@echo "\t\t${B_RED}DIRECTORY-SPECIFIC PHONY TARGETS${NONE}"
+	@echo " \t\t\tSome phony targets are defined for"
+	@echo " \t\tevery subdirectoies in the src/ directory,"
+	@echo " \t\t<subdir>, to do tasks that are specific to"
+	@echo " \t\tor associated with <subdir>."
+	@echo " \t\t\tNote that <subdir> does not have the "
+	@echo " \t\tslash at the end, e.g., <subdir>="
+	@echo " \t\tsrc/subdir001, _not_ <subdir>=src/subdir001/."
+	@echo
+	@echo "${GREEN}<subdir>-all${NONE}\t"\
+		"Generate ${BUILD}/*.o and ${BIN}/*.exe associated with <subdir>"
+	@echo "${GREEN}<subdir>-asm${NONE}\t"\
+		"Generate ${ASM}/*.s associated with <subdir>"
+	@echo "${GREEN}<subdir>-list${NONE}\t"\
+		"List files associated with <subdir>"
+	@echo "${GREEN}<subdir>-check${NONE}\t"\
+		"Run test_*.exe associated with <subdir>"
+	@echo "${GREEN}<subdir>-test${NONE}\t"\
+		"Generate ${BUILD}/*.exe associated with <subdir>"
+	@echo ""
+###############################################################################
