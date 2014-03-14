@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Volume Integral Solver of 2D Radiative Transport Equation
 
 (Learning markdown, copied from
@@ -44,3 +45,9 @@ the inspiration to this, and some handy implementation hints, came.
  * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for syntax highlighting in output code blocks
  * [js-deflate](https://github.com/dankogai/js-deflate) for gzipping of data to make it fit in URLs
 
+=======
+salon
+=====
+
+Salon lecture materials
+>>>>>>> 3e702906ce21708f1bd4c470abff38c8d2bc89f2
