@@ -2,7 +2,7 @@
 DIR:=${ROOT}/utils
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
 ${DIR}C:=
-${DIR}CPP:=test_table.cpp test_stat.cpp utils.cpp Table.cpp test_timestat.cpp
+${DIR}CPP:=test_timestat.cpp test_table.cpp test_stat.cpp utils.cpp Table.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
 ${DIR}CFLAGS:=${CFLAGS}
 ${DIR}CXXFLAGS:=${CXXFLAGS}

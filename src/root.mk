@@ -1,12 +1,12 @@
 #	PROJECT-WIDE COMMON COMPILING FLAGS 
 CC		:=icpc
-CFLAGS 		:=-O3 -Wall -restrict
+CFLAGS 		:=-O3 -Wall -restrict -openmp
 
 CXX		:=${CC}
 CXXFLAGS	:=${CFLAGS}
 #       PROJECT-WIDE DEFAULT LINKING LIBRARIES AND INCLUDE DIRECTORIES
 INCS		:=-iquote ${ROOT}
-LIBS		:=
+LIBS		:=-lfftw3_omp -lfftw3 -mkl
 ################################################################################
 #		INTERNAL VARIABLES
 OBJ		:=# .o files

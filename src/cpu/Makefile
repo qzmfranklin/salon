@@ -10,6 +10,7 @@ all: ${OBJ}
 asm: ${ASM}
 clean:
 	rm -f *.exe ${OBJ} ${DEP} ${ASM}
-# Sample linking rules for in-source build:
+
 allis.exe: ${d}/allis.o
 sin.exe: ${d}/sin.o ${ROOT}/utils/Table.o
+fft.exe: ${d}/fft.o ${ROOT}/utils/Table.o
