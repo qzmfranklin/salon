@@ -1,26 +1,27 @@
 \documentclass[main]{subfiles} 
 \begin{document}
-\section{High Level Languages}
+\section{Compiling, Assembling, and Linking}
 %\label{sec:}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{A Taste of C}
-[hello world example]
-\subsection{Compiling and Compilers}
-[Compilation of each source file generates one object file]
+\subsection{Usual work flow}
+preprocess, compile, assemble, link
+\subsection{Preprocess}
+Replace \texttt{include} with the included files and macros with their defs.
 
-[Optimizing compiling is artificial intelligence]
+Roughly speaking, nothing happens in this step.
+\subsection{Compile and Assemble}
+Translate human-readable languages such as Fortran/C/C++ into machine readable
+languages, or machine languages.
 
-[Compiling usually involves at least three phases: parsing, compiling and 
-assembling]
+Usually, these two steps are done by the compilers at one go. So, frequently we
+no longer distinguish them and just call them collectively as compiling.
 
-[Show the compiler theory book]
+Each .c/.cpp file is compiled into one and only one .o file in this step.
 
-[Design of languages]
-
-[Philosophy of C] 
-\subsection{Linking and Linker}
-[Linking of one or more object file(s) generates one
-executable, which is indeed machine instructions]
+However, we still cannot run the resulting files. The resulted files are not
+executables.
+\subsection{Link}
+Link .o files, add "starting sections", make an executable file.
 
 \subsection{Libraries, Shared Objects}
 [static library vs. dynamic library]
@@ -28,37 +29,9 @@ executable, which is indeed machine instructions]
 [Windows dll, Linux so, MaxOSX dylib]
 
 [good libraries, bad libraries]
-\subsection{Fortran}
-[ASM helloworld exmaple]
 
-[After compilation, object files are same with C]
-
-[Philosophy of Fortran] 
-\subsection{Ex ASM: Fortran \& C}
-[linking-cfortran/addtwo.exe]
-
-\subsection{C++ vs. C: Huge Difference}
-[name mangling: theory and practice]
-
-[mixed linkage: extern "C"]
-\subsection{Ex ASM: C \& C++}
-[linking-ccpp/addtwo.exe]
-
-\subsection{Java}
-[java virtual machine (JVM)]
-
-[java runtime environment (JRE)]
-
-[java compiler javac generates java virtual machine instructions]
-
-\subsection{Ex Java}
-[java/helloworld.exe]
-
-\subsection{Python, Matlab, Mathematica, R}
-[Interpretative vs. Compiling]
-
-[Interpreter vs. Compiler]
-
-[Rule of Thumb of Interpretative Tools]
+\subsection{matlab, Mathematica, python, shell, ruby, R, etc.}
+Interpretive, translate on the fly, easily slow by a factor of 20-100 compared
+to compiled programs.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \end{document}

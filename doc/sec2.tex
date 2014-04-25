@@ -4,58 +4,99 @@
 %\label{sec:}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{1+1=2 Revisited}
+What is really going on when we do a \texttt{1+1=2} calculation?
+
 \subsection{Operator and Operands}
 [graph]
-\subsection{Compoud Arithmetic Expressions}
+\subsection{Compound Arithmetic Expressions}
 [1+3*5]
+precedence, associativity
 \subsection{Tree Structure of Compound Arithmetic Expressions}
 [graph:1+3*5]
 \subsection{Parsing/Flattening Trees of Arithmetic Expressions}
 [lecture:1+3*5] 
+\subsection{Example}
+\texttt{cpu/allis.exe}:
+\lstinputlisting{../src/cpu/allis.cpp}
+
+excerpt from \texttt{cpu/allis.s}:
+\begin{lstlisting}[language=Ant]
+# -- Begin  _Z4funxPKi
+...
+# parameter 1: %rdi
+### 	return n[0] + n[1] * n[2];
+        movl      4(%rdi), %eax                                 #11.16
+        imull     8(%rdi), %eax                                 #11.23
+        addl      (%rdi), %eax                                  #11.23
+        ret                                                     #11.23
+...
+# -- End  _Z4funxPKi
+\end{lstlisting}
+
+A complete/near-complete exposition of the above assembly listing would lead to
+the discussion of many aspects on the CPU. We will explain each and every of
+them in the following sections.
+
+\subsection{Instructions Set Architecture (ISA)}
+instruction, opcode : \texttt{0010 0111 1101 0111}
+
+machine language = the set of opcodes
+
+assembly code: \texttt{addl opd1, opd2}
+
+Take the \texttt{x86\_64} architecture as an example:
+
+int classification:
+\texttt{x86\_64} instruction sets: see \\
+\url{http://en.wikipedia.org/wiki/X86_instruction_listings} \\
+
+[in lecture] proper reference to \url{http://x86.renejeschke.de/} \\
+
+
+arithmetic(integral,floating point): add, sub, mul, imul
+
+logic,flow control: cmp, jmp(goto)
+
+load/store,memory,cache,tlb,etc.: mov, wb
+
+
+register classification:
+
+\texttt{x86\_64} registers: see \\
+\url{https://www.tortall.net/projects/yasm/manual/html/arch-x86-registers.html},
+
+general purpose (arithmetic operand, address container)
+
+special/misc (interrupt/signal, mode, flags, etc.) 
 
 \subsection{Machine Representation of Numbers}
-[int, long int, unsigned int]
+Integral numbers are easy.
 
-[float, double, long double]
+Floating number are not that easy.
 
-[32bit, 64bit]
+The IEEE754 standard says: \\
+\url{http://steve.hollasch.net/cgindex/coding/ieeefloat.html}
 
-[IEEE standard]
-\subsection{Instructions and Registers}
-[instructions: add, mul, div]
+The floating point operations: add, sub, mul, div, fsqrt
 
-[registers: graph from internet]
+The design and implementation ensures that the resulting numbers are the best
+approximation to an exact intermediary result. The largest possible relative 
+error is $2^{-52}=2.2\times10^{-16}$. Therefore, the number of significant
+digits is 16 for double precision numbers.
 
-[registers may be wider than the data]
 
-[registers may have special uses]
-
-[instruction sets]
 \subsection{Vendors and Instruction Sets}
 [MMX,SEE,SEE2,SEE3,SEE4,SEE4.1,SEE4.2,AVX,AVX2]
 
 [3DNow!]
 
-[MIPS,MPIS64]
-
 [PPC]
 
-\subsection{Machine Language}
-=instruction
+[ARM]
 
-[machine dependent]
-\subsection{Assembly Language and Assemblers} 
-[one-one map between instruction and human readable words]
+[Loongson] (!!)
 
-[machne dependent, but also sometimes maybe software/OS/convention dependent]
-\subsection{Ex ASM: 1+3*5}
-[cpu/cpdexp.exe]
+[MIPS,MIPS64]
 
-\subsection{Registers and Caches}
-[Registers' schematic plot from wiki]
-
-[Cache size exmaples]
-
-[RAM, disk, speed difference]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \end{document}

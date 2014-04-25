@@ -13,14 +13,14 @@ cleanxx: clean
 	rm -f ${PDF}
 
 ${PDF}: main.dvi ${DVI}
-	@dvipdf $< $@
+	dvipdf $< $@
 
 main.dvi: main.tex ${SRC}
-	@latex $< $@ >log
-	@latex $< $@ >log
-	@latex $< $@ >log
+	latex $< $@
+	latex $< $@
+	latex $< $@
 
 %.dvi: %.tex
-	@latex $< $@ >log
-	@latex $< $@ >log
-	@latex $< $@ >log
+	latex $< $@
+	latex $< $@
+	latex $< $@

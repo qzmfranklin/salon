@@ -5,6 +5,12 @@
 *.tex
 *.out
 *.toc
+*.d
+*.s
+*.exe
+
+doc/out.pdf
+log
 =======
 # Compiled Object files
 *.slo
@@ -19,4 +25,7 @@
 *.lai
 *.la
 *.a
+
+
+
 >>>>>>> 3e702906ce21708f1bd4c470abff38c8d2bc89f2

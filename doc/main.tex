@@ -1,10 +1,32 @@
 \input{physicsheader}
 
+\usepackage{graphicx}
 \usepackage{indentfirst}
 \usepackage{subfiles} 
 \usepackage{hyperref}
 \usepackage{xr}
 \usepackage[toc,page]{appendix}
+
+\usepackage{listings}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{times} 
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color{red}\bfseries,
+    stringstyle=\color{green!50!black},
+    commentstyle=\color{gray}\itshape,
+    numbers=left,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
 
 % The following commands are needed to make physicsheader work right
 \let\vaccent=\v % rename builtin command \v{} to \vaccent{}

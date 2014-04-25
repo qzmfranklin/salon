@@ -1,29 +1,13 @@
 \documentclass[main]{subfiles} 
 \begin{document}
-\section{Compiler Optimazation}
+\section{\texttt{cpu/allis.exe} Revisited}
 %\label{sec:}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Two Versions of a Summation}
-[vec/addmany1.exe]
+\subsection{Use of \texttt{const}}
+With \texttt{const}: \\
+\begin{lstlisting}
+\end{lstlisting}
 
-[vec/addmany2.exe]
-\subsection{Vectorization}
-[single instruciton multi-data (SIMD)]
-
-[compiler flags, code directives, and dirty tricks]
-\subsection{Ex ASM: Vectorization}
-[vec/addmany1.exe]
-
-[vec/addmany2.exe]
-\subsection{Two Versions of Scaling}
-[vec/scale1.exe]
-
-[vec/scale2.exe]
-
-\subsection{Many Variables}
-[vec/manyvars.exe] (to exhaust registers)
-
-\subsection{Loop Unrolling}
-[vec/unroll.exe]
+Without \texttt{const}: \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \end{document}
