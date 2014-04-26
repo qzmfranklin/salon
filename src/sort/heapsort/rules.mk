@@ -1,8 +1,8 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/cpu
+DIR:=${ROOT}/sort/heapsort
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
 ${DIR}C:=
-${DIR}CPP:=fft.cpp allis.cpp sin.cpp 
+${DIR}CPP:=heapsort.cpp test_heapsort.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
 ${DIR}CFLAGS:=${CFLAGS}
 ${DIR}CXXFLAGS:=${CXXFLAGS}

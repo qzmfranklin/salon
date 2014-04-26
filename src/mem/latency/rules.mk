@@ -1,8 +1,8 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/cpu
+DIR:=${ROOT}/mem/latency
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
 ${DIR}C:=
-${DIR}CPP:=fft.cpp allis.cpp sin.cpp 
+${DIR}CPP:=array_walk.cpp latency_utils.cpp latency.cpp table_latency.cpp time_walk.cpp hist_latency.cpp dummy.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
 ${DIR}CFLAGS:=${CFLAGS}
 ${DIR}CXXFLAGS:=${CXXFLAGS}

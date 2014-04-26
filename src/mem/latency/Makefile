@@ -1,7 +1,7 @@
 ROOT    :=/media/qzmfranklin/data/git/salon/src
-d       :=${ROOT}/mem-latency# this directory
+d       :=${ROOT}/mem/latency# this directory
 -include ${ROOT}/root.mk
--include ${ROOT}/mem-latency/rules.mk
+-include ${ROOT}/mem/latency/rules.mk
 -include ${ROOT}/utils/rules.mk
 -include ${DEP}
 

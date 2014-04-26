@@ -7,6 +7,7 @@ ${DIR}CPP:=magic3.cpp test_magic3.cpp
 ${DIR}CFLAGS:=${CFLAGS}
 ${DIR}CXXFLAGS:=${CXXFLAGS}
 ${DIR}INCS:=${INCS}
+${DIR}LIBS:=${LIBS}
 
 DEP+=${${DIR}CPP:%.cpp=${DIR}/%.d} ${${DIR}C:%.c=${DIR}/%.d} 
 OBJ+=${${DIR}CPP:%.cpp=${DIR}/%.o} ${${DIR}C:%.c=${DIR}/%.o} 
@@ -24,4 +25,4 @@ ${DIR}/%.s: ${DIR}/%.cpp
 
 # Linking pattern rule for this directory
 %.exe: ${DIR}/%.o
-	${CXX} -o $@ $^ ${LIBS}
+	${CXX} -o $@ $^ ${${DIR}LIBS}

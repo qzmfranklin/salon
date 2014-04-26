@@ -1,8 +1,8 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/cpu
+DIR:=${ROOT}/mem/bw
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
 ${DIR}C:=
-${DIR}CPP:=fft.cpp allis.cpp sin.cpp 
+${DIR}CPP:=time_sumcopy.cpp test_sumcopy.cpp sumcopy.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
 ${DIR}CFLAGS:=${CFLAGS}
 ${DIR}CXXFLAGS:=${CXXFLAGS}

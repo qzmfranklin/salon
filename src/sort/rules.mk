@@ -1,12 +1,13 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/mem-latency
+DIR:=${ROOT}/sort
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
 ${DIR}C:=
-${DIR}CPP:=array_walk.cpp latency_utils.cpp latency.cpp table_latency.cpp time_walk.cpp hist_latency.cpp dummy.cpp 
+${DIR}CPP:=cmp_sort.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
 ${DIR}CFLAGS:=${CFLAGS}
 ${DIR}CXXFLAGS:=${CXXFLAGS}
 ${DIR}INCS:=${INCS}
+${DIR}LIBS:=${LIBS}
 
 DEP+=${${DIR}CPP:%.cpp=${DIR}/%.d} ${${DIR}C:%.c=${DIR}/%.d} 
 OBJ+=${${DIR}CPP:%.cpp=${DIR}/%.o} ${${DIR}C:%.c=${DIR}/%.o} 
@@ -24,4 +25,4 @@ ${DIR}/%.s: ${DIR}/%.cpp
 
 # Linking pattern rule for this directory
 %.exe: ${DIR}/%.o
-	${CXX} -o $@ $^ ${LIBS}
+	${CXX} -o $@ $^ ${${DIR}LIBS}
