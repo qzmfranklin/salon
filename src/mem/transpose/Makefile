@@ -13,5 +13,5 @@ clean:
 
 test_transpose.exe: ${d}/test_transpose.o ${d}/transpose.o
 
-time_transpose.exe: ${d}/test_transpose.o ${d}/transpose.o \
+time_transpose.exe: ${d}/time_transpose.o ${d}/transpose.o \
 	${ROOT}/utils/Table.o

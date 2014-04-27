@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <assert.h>
 #include <mkl.h>
 #include "utils/Table.h"
+#include "utils/TimeStat.h"
 #include "transpose.h"
 
 static void init_array(const int n, double *restrict a)
@@ -16,7 +17,7 @@ static const int TRANS_TYPE_SIZE=2;
 // measure memory bw (in median) in bytes/cycle for (type, dim)
 static double membw0(const int type, const int dim, double *restrict a)
 {
-	const num=10;
+	const int num=10;
 	TimeStat clk(num);
 	for (int i = 0; i < num; i++) {
 		switch ((enum TRANS_TYPE)type) {
@@ -34,7 +35,7 @@ static double membw0(const int type, const int dim, double *restrict a)
 				break;
 		}
 	}
-	return clk.median();
+	return 8*dim*dim/clk.median();
 }
 
 static void test_membw(const int dim, double *restrict data)

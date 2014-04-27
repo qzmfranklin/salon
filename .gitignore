@@ -9,7 +9,8 @@
 *.s
 *.exe
 
-doc/out.pdf
+*.pdf
+!doc/out.pdf
 log
 =======
 # Compiled Object files

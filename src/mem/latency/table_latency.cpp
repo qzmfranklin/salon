@@ -23,8 +23,6 @@
 
 #define NTRIALS 100
 
-//#define MEMWALK
-
 void measure_latency(int n, StatVector& stats){
 	const int ntrials = NTRIALS;
 	assrt(stats.getSize() >= ntrials);
