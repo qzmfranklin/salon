@@ -7,11 +7,16 @@
 	.type	main, @function
 main:
 	subq	$32, %rsp
-	movl	$5, %r9d
-	movl	$4, %r8d
-	movl	$3, %ecx
-	movl	$2, %edx
-	movl	$1, %esi
+	;movl	$5, %r9d
+	;movl	$4, %r8d
+	;movl	$3, %ecx
+	;movl	$2, %edx
+	;movl	$1, %esi
+	movq	$5, %r9
+	movq	$4, %r8
+	movq	$3, %rcx
+	movq	$2, %rdx
+	movq	$1, %rsi
 	movl	$.LC0, %edi
 	xorl	%eax, %eax
 	movl	$36, 24(%rsp)
