@@ -23,7 +23,7 @@
 
 #define NTRIALS 100
 
-#define MEMWALK
+//#define MEMWALK
 
 void measure_latency(int n, StatVector& stats){
 	const int ntrials = NTRIALS;
@@ -55,9 +55,9 @@ int main(){
 	
 	for(int i=0; i < nrows; i++){
 		measure_latency(nlist[i], stats);
-		cyc2dram[i+0*nrows] = stats.min();
-		cyc2dram[i+1*nrows] = stats.median();
-		cyc2dram[i+2*nrows] = stats.max();
+		cyc2dram[0+ncols*i] = stats.min();
+		cyc2dram[1+ncols*i] = stats.median();
+		cyc2dram[2+ncols*i] = stats.max();
 	}
 	
 	verify_dir("DBG");
