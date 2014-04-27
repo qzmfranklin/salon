@@ -1,28 +1,28 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/mem/latency
+DIR00006:=${ROOT}/mem/latency
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
-${DIR}C:=
-${DIR}CPP:=array_walk.cpp latency_utils.cpp latency.cpp table_latency.cpp time_walk.cpp hist_latency.cpp dummy.cpp 
+${DIR00006}C:=
+${DIR00006}CPP:=array_walk.cpp latency_utils.cpp latency.cpp table_latency.cpp time_walk.cpp hist_latency.cpp dummy.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
-${DIR}CFLAGS:=${CFLAGS}
-${DIR}CXXFLAGS:=${CXXFLAGS}
-${DIR}INCS:=${INCS}
-${DIR}LIBS:=${LIBS}
+${DIR00006}CFLAGS:=${CFLAGS}
+${DIR00006}CXXFLAGS:=${CXXFLAGS}
+${DIR00006}INCS:=${INCS}
+${DIR00006}LIBS:=${LIBS}
 
-DEP+=${${DIR}CPP:%.cpp=${DIR}/%.d} ${${DIR}C:%.c=${DIR}/%.d} 
-OBJ+=${${DIR}CPP:%.cpp=${DIR}/%.o} ${${DIR}C:%.c=${DIR}/%.o} 
-ASM+=${${DIR}CPP:%.cpp=${DIR}/%.s} ${${DIR}C:%.c=${DIR}/%.s} 
+DEP+=${${DIR00006}CPP:%.cpp=${DIR00006}/%.d} ${${DIR00006}C:%.c=${DIR00006}/%.d} 
+OBJ+=${${DIR00006}CPP:%.cpp=${DIR00006}/%.o} ${${DIR00006}C:%.c=${DIR00006}/%.o} 
+ASM+=${${DIR00006}CPP:%.cpp=${DIR00006}/%.s} ${${DIR00006}C:%.c=${DIR00006}/%.s} 
 
-${DIR}/%.o: ${DIR}/%.c
-	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.c
-	${CC} -o $@ $< ${ASMFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
+${DIR00006}/%.o: ${DIR00006}/%.c
+	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR00006}CFLAGS} ${${DIR00006}INCS}
+${DIR00006}/%.s: ${DIR00006}/%.c
+	${CC} -o $@ $< ${ASMFLAGS} ${${DIR00006}CFLAGS} ${${DIR00006}INCS}
 
-${DIR}/%.o: ${DIR}/%.cpp
-	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.cpp
-	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
+${DIR00006}/%.o: ${DIR00006}/%.cpp
+	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR00006}CXXFLAGS} ${${DIR00006}INCS}
+${DIR00006}/%.s: ${DIR00006}/%.cpp
+	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR00006}CXXFLAGS} ${${DIR00006}INCS}
 
 # Linking pattern rule for this directory
-%.exe: ${DIR}/%.o
-	${CXX} -o $@ $^ ${${DIR}LIBS}
+%.exe: ${DIR00006}/%.o
+	${CXX} -o $@ $^ ${${DIR00006}LIBS}

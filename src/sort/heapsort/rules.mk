@@ -1,28 +1,28 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/sort/heapsort
+DIR00016:=${ROOT}/sort/heapsort
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
-${DIR}C:=
-${DIR}CPP:=heapsort.cpp test_heapsort.cpp 
+${DIR00016}C:=
+${DIR00016}CPP:=heapsort.cpp test_heapsort.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
-${DIR}CFLAGS:=${CFLAGS}
-${DIR}CXXFLAGS:=${CXXFLAGS}
-${DIR}INCS:=${INCS}
-${DIR}LIBS:=${LIBS}
+${DIR00016}CFLAGS:=${CFLAGS}
+${DIR00016}CXXFLAGS:=${CXXFLAGS}
+${DIR00016}INCS:=${INCS}
+${DIR00016}LIBS:=${LIBS}
 
-DEP+=${${DIR}CPP:%.cpp=${DIR}/%.d} ${${DIR}C:%.c=${DIR}/%.d} 
-OBJ+=${${DIR}CPP:%.cpp=${DIR}/%.o} ${${DIR}C:%.c=${DIR}/%.o} 
-ASM+=${${DIR}CPP:%.cpp=${DIR}/%.s} ${${DIR}C:%.c=${DIR}/%.s} 
+DEP+=${${DIR00016}CPP:%.cpp=${DIR00016}/%.d} ${${DIR00016}C:%.c=${DIR00016}/%.d} 
+OBJ+=${${DIR00016}CPP:%.cpp=${DIR00016}/%.o} ${${DIR00016}C:%.c=${DIR00016}/%.o} 
+ASM+=${${DIR00016}CPP:%.cpp=${DIR00016}/%.s} ${${DIR00016}C:%.c=${DIR00016}/%.s} 
 
-${DIR}/%.o: ${DIR}/%.c
-	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.c
-	${CC} -o $@ $< ${ASMFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
+${DIR00016}/%.o: ${DIR00016}/%.c
+	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR00016}CFLAGS} ${${DIR00016}INCS}
+${DIR00016}/%.s: ${DIR00016}/%.c
+	${CC} -o $@ $< ${ASMFLAGS} ${${DIR00016}CFLAGS} ${${DIR00016}INCS}
 
-${DIR}/%.o: ${DIR}/%.cpp
-	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.cpp
-	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
+${DIR00016}/%.o: ${DIR00016}/%.cpp
+	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR00016}CXXFLAGS} ${${DIR00016}INCS}
+${DIR00016}/%.s: ${DIR00016}/%.cpp
+	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR00016}CXXFLAGS} ${${DIR00016}INCS}
 
 # Linking pattern rule for this directory
-%.exe: ${DIR}/%.o
-	${CXX} -o $@ $^ ${${DIR}LIBS}
+%.exe: ${DIR00016}/%.o
+	${CXX} -o $@ $^ ${${DIR00016}LIBS}

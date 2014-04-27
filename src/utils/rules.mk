@@ -1,28 +1,28 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/utils
+DIR00014:=${ROOT}/utils
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
-${DIR}C:=
-${DIR}CPP:=test_timestat.cpp test_table.cpp test_stat.cpp utils.cpp Table.cpp 
+${DIR00014}C:=
+${DIR00014}CPP:=test_timestat.cpp test_table.cpp test_stat.cpp utils.cpp Table.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
-${DIR}CFLAGS:=${CFLAGS}
-${DIR}CXXFLAGS:=${CXXFLAGS}
-${DIR}INCS:=${INCS}
-${DIR}LIBS:=${LIBS}
+${DIR00014}CFLAGS:=${CFLAGS}
+${DIR00014}CXXFLAGS:=${CXXFLAGS}
+${DIR00014}INCS:=${INCS}
+${DIR00014}LIBS:=${LIBS}
 
-DEP+=${${DIR}CPP:%.cpp=${DIR}/%.d} ${${DIR}C:%.c=${DIR}/%.d} 
-OBJ+=${${DIR}CPP:%.cpp=${DIR}/%.o} ${${DIR}C:%.c=${DIR}/%.o} 
-ASM+=${${DIR}CPP:%.cpp=${DIR}/%.s} ${${DIR}C:%.c=${DIR}/%.s} 
+DEP+=${${DIR00014}CPP:%.cpp=${DIR00014}/%.d} ${${DIR00014}C:%.c=${DIR00014}/%.d} 
+OBJ+=${${DIR00014}CPP:%.cpp=${DIR00014}/%.o} ${${DIR00014}C:%.c=${DIR00014}/%.o} 
+ASM+=${${DIR00014}CPP:%.cpp=${DIR00014}/%.s} ${${DIR00014}C:%.c=${DIR00014}/%.s} 
 
-${DIR}/%.o: ${DIR}/%.c
-	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.c
-	${CC} -o $@ $< ${ASMFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
+${DIR00014}/%.o: ${DIR00014}/%.c
+	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR00014}CFLAGS} ${${DIR00014}INCS}
+${DIR00014}/%.s: ${DIR00014}/%.c
+	${CC} -o $@ $< ${ASMFLAGS} ${${DIR00014}CFLAGS} ${${DIR00014}INCS}
 
-${DIR}/%.o: ${DIR}/%.cpp
-	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.cpp
-	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
+${DIR00014}/%.o: ${DIR00014}/%.cpp
+	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR00014}CXXFLAGS} ${${DIR00014}INCS}
+${DIR00014}/%.s: ${DIR00014}/%.cpp
+	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR00014}CXXFLAGS} ${${DIR00014}INCS}
 
 # Linking pattern rule for this directory
-%.exe: ${DIR}/%.o
-	${CXX} -o $@ $^ ${${DIR}LIBS}
+%.exe: ${DIR00014}/%.o
+	${CXX} -o $@ $^ ${${DIR00014}LIBS}

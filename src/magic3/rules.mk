@@ -1,28 +1,28 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/magic3
+DIR00003:=${ROOT}/magic3
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
-${DIR}C:=
-${DIR}CPP:=magic3.cpp test_magic3.cpp 
+${DIR00003}C:=
+${DIR00003}CPP:=magic3.cpp test_magic3.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
-${DIR}CFLAGS:=${CFLAGS}
-${DIR}CXXFLAGS:=${CXXFLAGS}
-${DIR}INCS:=${INCS}
-${DIR}LIBS:=${LIBS}
+${DIR00003}CFLAGS:=${CFLAGS}
+${DIR00003}CXXFLAGS:=${CXXFLAGS}
+${DIR00003}INCS:=${INCS}
+${DIR00003}LIBS:=${LIBS}
 
-DEP+=${${DIR}CPP:%.cpp=${DIR}/%.d} ${${DIR}C:%.c=${DIR}/%.d} 
-OBJ+=${${DIR}CPP:%.cpp=${DIR}/%.o} ${${DIR}C:%.c=${DIR}/%.o} 
-ASM+=${${DIR}CPP:%.cpp=${DIR}/%.s} ${${DIR}C:%.c=${DIR}/%.s} 
+DEP+=${${DIR00003}CPP:%.cpp=${DIR00003}/%.d} ${${DIR00003}C:%.c=${DIR00003}/%.d} 
+OBJ+=${${DIR00003}CPP:%.cpp=${DIR00003}/%.o} ${${DIR00003}C:%.c=${DIR00003}/%.o} 
+ASM+=${${DIR00003}CPP:%.cpp=${DIR00003}/%.s} ${${DIR00003}C:%.c=${DIR00003}/%.s} 
 
-${DIR}/%.o: ${DIR}/%.c
-	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.c
-	${CC} -o $@ $< ${ASMFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
+${DIR00003}/%.o: ${DIR00003}/%.c
+	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR00003}CFLAGS} ${${DIR00003}INCS}
+${DIR00003}/%.s: ${DIR00003}/%.c
+	${CC} -o $@ $< ${ASMFLAGS} ${${DIR00003}CFLAGS} ${${DIR00003}INCS}
 
-${DIR}/%.o: ${DIR}/%.cpp
-	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.cpp
-	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
+${DIR00003}/%.o: ${DIR00003}/%.cpp
+	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR00003}CXXFLAGS} ${${DIR00003}INCS}
+${DIR00003}/%.s: ${DIR00003}/%.cpp
+	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR00003}CXXFLAGS} ${${DIR00003}INCS}
 
 # Linking pattern rule for this directory
-%.exe: ${DIR}/%.o
-	${CXX} -o $@ $^ ${${DIR}LIBS}
+%.exe: ${DIR00003}/%.o
+	${CXX} -o $@ $^ ${${DIR00003}LIBS}

@@ -1,28 +1,28 @@
 #  THIS DIRECTORY
-DIR:=${ROOT}/mem/bw
+DIR00008:=${ROOT}/mem/bw
 #  ALL C/C++ FILES IN THIS DIRECTORY (WITHOUT PATHNAME)
-${DIR}C:=
-${DIR}CPP:=time_sumcopy.cpp test_sumcopy.cpp sumcopy.cpp 
+${DIR00008}C:=
+${DIR00008}CPP:=time_sumcopy.cpp test_sumcopy.cpp sumcopy.cpp 
 #  DIRECTORY-SPECIFIC COMPILING FLAGS AND INCLUDE DIRECTORIES
-${DIR}CFLAGS:=${CFLAGS}
-${DIR}CXXFLAGS:=${CXXFLAGS}
-${DIR}INCS:=${INCS}
-${DIR}LIBS:=${LIBS}
+${DIR00008}CFLAGS:=${CFLAGS}
+${DIR00008}CXXFLAGS:=${CXXFLAGS}
+${DIR00008}INCS:=${INCS}
+${DIR00008}LIBS:=${LIBS}
 
-DEP+=${${DIR}CPP:%.cpp=${DIR}/%.d} ${${DIR}C:%.c=${DIR}/%.d} 
-OBJ+=${${DIR}CPP:%.cpp=${DIR}/%.o} ${${DIR}C:%.c=${DIR}/%.o} 
-ASM+=${${DIR}CPP:%.cpp=${DIR}/%.s} ${${DIR}C:%.c=${DIR}/%.s} 
+DEP+=${${DIR00008}CPP:%.cpp=${DIR00008}/%.d} ${${DIR00008}C:%.c=${DIR00008}/%.d} 
+OBJ+=${${DIR00008}CPP:%.cpp=${DIR00008}/%.o} ${${DIR00008}C:%.c=${DIR00008}/%.o} 
+ASM+=${${DIR00008}CPP:%.cpp=${DIR00008}/%.s} ${${DIR00008}C:%.c=${DIR00008}/%.s} 
 
-${DIR}/%.o: ${DIR}/%.c
-	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.c
-	${CC} -o $@ $< ${ASMFLAGS} ${${DIR}CFLAGS} ${${DIR}INCS}
+${DIR00008}/%.o: ${DIR00008}/%.c
+	${CC} -o $@ -c $< ${DEPFLAGS} ${${DIR00008}CFLAGS} ${${DIR00008}INCS}
+${DIR00008}/%.s: ${DIR00008}/%.c
+	${CC} -o $@ $< ${ASMFLAGS} ${${DIR00008}CFLAGS} ${${DIR00008}INCS}
 
-${DIR}/%.o: ${DIR}/%.cpp
-	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
-${DIR}/%.s: ${DIR}/%.cpp
-	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR}CXXFLAGS} ${${DIR}INCS}
+${DIR00008}/%.o: ${DIR00008}/%.cpp
+	${CXX} -o $@ -c $< ${DEPFLAGS} ${${DIR00008}CXXFLAGS} ${${DIR00008}INCS}
+${DIR00008}/%.s: ${DIR00008}/%.cpp
+	${CXX} -o $@ $< ${ASMFLAGS} ${${DIR00008}CXXFLAGS} ${${DIR00008}INCS}
 
 # Linking pattern rule for this directory
-%.exe: ${DIR}/%.o
-	${CXX} -o $@ $^ ${${DIR}LIBS}
+%.exe: ${DIR00008}/%.o
+	${CXX} -o $@ $^ ${${DIR00008}LIBS}
